@@ -28,13 +28,19 @@ app.post('/callback', line.middleware(config), (req, res) => {
     });
 });
 
+
+
+
+
 // event handler
 function handleEvent(event) {
+
+
   if (event.type !== 'message' || event.message.type !== 'text') {
     // ignore non-text-message event
     return Promise.resolve(null);
   }
-  else if (event.message.type === "text" || event.message.text === "hello")
+  else if (event.type === 'message' || event.message.text === 'hello')
   {
     const payload = {
       type: "text",
@@ -48,7 +54,15 @@ function handleEvent(event) {
 
   // use reply API
   return client.replyMessage(event.replyToken, echo);
+
+
 }
+
+
+
+
+
+
 
 // listen on port
 const port = process.env.PORT || 3000;
