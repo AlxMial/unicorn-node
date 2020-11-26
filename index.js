@@ -34,6 +34,14 @@ function handleEvent(event) {
     // ignore non-text-message event
     return Promise.resolve(null);
   }
+  else if (event.message.type === 'message' || event.message.text === 'text')
+  {
+    const payload = {
+      type: "text",
+      text: "Hello by mew"
+    };
+    return client.replyMessage(event.replayToken, payload);
+  } 
 
   // create a echoing text message
   const echo = { type: 'text', text: event.message.text };
