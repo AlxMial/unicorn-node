@@ -40,20 +40,20 @@ function handleEvent(event) {
     // ignore non-text-message event
     return Promise.resolve(null);
   }
-  else if (event.message.type === 'text' || event.message.text === "hello")
+  else if (event.message.type === "text" || event.message.text === "Hello")
   {
     const payload = {
-      type: 'text',
+      type: "text",
       text: "Hello by mew"
     };
     return client.replyMessage(event.replyToken, payload);
   } 
 
   // create a echoing text message
-  const echo = { type: 'text', text: event.message.text };
+  //const echo = { type: 'text', text: event.message.text };
 
   // use reply API
-  return client.replyMessage(event.replyToken, echo);
+  //return client.replyMessage(event.replyToken, echo);
 }
 
 
