@@ -43,7 +43,7 @@ function handleEvent(event) {
   else if (event.type === 'message' || event.message.text === 'hello')
   {
     const payload = {
-      type: "text",
+      type: 'text',
       text: "Hello by mew"
     };
     return client.replyMessage(event.replyToken, payload);
