@@ -40,7 +40,7 @@ function handleEvent(event) {
       type: "text",
       text: "Hello by mew"
     };
-    return client.replyMessage(event.replayToken, payload);
+    return client.replyMessage(event.replyToken, payload);
   } 
 
   // create a echoing text message
