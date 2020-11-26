@@ -34,7 +34,7 @@ function handleEvent(event) {
     // ignore non-text-message event
     return Promise.resolve(null);
   }
-  else if (event.message.type === 'text' || event.message.text === 'hello')
+  else if (event.message.type === "text" || event.message.text === "hello")
   {
     const payload = {
       type: "text",
