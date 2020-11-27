@@ -159,8 +159,7 @@ function handleMessageEvent(event) {
         }
     }
 
-    return client.replyMessage(event.replyToken, client.getProfile('<userId>'));
-    
+    return client.replyMessage(event.replyToken, userID);
 }
 
 app.set('port', (process.env.PORT || 5000));
