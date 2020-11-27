@@ -28,22 +28,28 @@ function handleEvent(event) {
     }
 }
 
-client.getProfile('<userId>')
-  .then((profile) => {
-    console.log(profile.displayName);
-    console.log(profile.userId);
-    console.log(profile.pictureUrl);
-    console.log(profile.statusMessage);
-  })
-  .catch((err) => {
-    // error handling
-  });
 
 function handleMessageEvent(event) {
     var msg = {
         type: 'text',
         text: 'สวัสดีครัช'
     };
+
+    
+    client.getProfile('<userId>')
+    .then((profile) => {
+        msg = {
+            "type": "text",
+            "text":profile.userId
+        }
+        console.log(profile.displayName);
+        console.log(profile.userId);
+        console.log(profile.pictureUrl);
+        console.log(profile.statusMessage);
+    })
+    .catch((err) => {
+    // error handling
+    });
 
     var eventText = event.message.text.toLowerCase();
 
@@ -159,7 +165,7 @@ function handleMessageEvent(event) {
         }
     }
 
-    return client.replyMessage(event.replyToken, userID);
+    return client.replyMessage(event.replyToken, msg);
 }
 
 app.set('port', (process.env.PORT || 5000));
