@@ -18,7 +18,7 @@ app.post('/webhook', line.middleware(config), (req, res) => {
         .then((result) => res.json(result));
 });
 
-function handleEvent(event) {
+/*function handleEvent(event) {
 
     console.log(event);
     if (event.type === 'message' && event.message.type === 'text') {
@@ -28,7 +28,7 @@ function handleEvent(event) {
     }
 }
 
-/*
+
 function handleMessageEvent(event) {
     var msg = {
         type: 'text',
@@ -152,7 +152,58 @@ function handleMessageEvent(event) {
     return client.replyMessage(event.replyToken, msg);
 }
 */
-
+function handleEvent(event) {
+    if (event.replyToken && event.replyToken.match(/^(.)\1*$/)) {
+      return console.log("Test hook recieved: " + JSON.stringify(event.message));
+    }
+  
+    switch (event.type) {
+      case 'message':
+        const message = event.message;
+        switch (message.type) {
+          case 'text':
+            return handleText(message, event.replyToken, event.source);
+          case 'image':
+            return handleImage(message, event.replyToken);
+          case 'video':
+            return handleVideo(message, event.replyToken);
+          case 'audio':
+            return handleAudio(message, event.replyToken);
+          case 'location':
+            return handleLocation(message, event.replyToken);
+          case 'sticker':
+            return handleSticker(message, event.replyToken);
+          default:
+            throw new Error(`Unknown message: ${JSON.stringify(message)}`);
+        }
+  
+      case 'follow':
+        return replyText(event.replyToken, 'Got followed event');
+  
+      case 'unfollow':
+        return console.log(`Unfollowed this bot: ${JSON.stringify(event)}`);
+  
+      case 'join':
+        return replyText(event.replyToken, `Joined ${event.source.type}`);
+  
+      case 'leave':
+        return console.log(`Left: ${JSON.stringify(event)}`);
+  
+      case 'postback':
+        let data = event.postback.data;
+        if (data === 'DATE' || data === 'TIME' || data === 'DATETIME') {
+          data += `(${JSON.stringify(event.postback.params)})`;
+        }
+        return replyText(event.replyToken, `Got postback: ${data}`);
+  
+      case 'beacon':
+        return replyText(event.replyToken, `Got beacon: ${event.beacon.hwid}`);
+  
+      default:
+        throw new Error(`Unknown event: ${JSON.stringify(event)}`);
+    }
+  }
+  
 
 function handleText(message, replyToken, source) {
     const buttonsImageURL = `${baseURL}/static/buttons/1040.jpg`;
