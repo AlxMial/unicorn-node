@@ -8,12 +8,12 @@ const cp = require('child_process');
 
 // create LINE SDK config from env variables
 const config = {
-  channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
-  channelSecret: process.env.CHANNEL_SECRET,
+  channelAccessToken: "hp/K+6X7L0Nba8iMwyRIH/4MoafQbUvY1oFMRhfGuXkuOdfGvlHnyiH4t4gUzdUS31KZX4mNR4eCj2zLk4AqPPjm2qW7ZioR14KhXwcmN/n6DsbeSUHjVuk08t7+VplcHFSpZl9nNIURudWEsBHp5wdB04t89/1O/w1cDnyilFU=",
+  channelSecret: "b1cd91f12aedcafa6af9eebd01bca9d1",
 };
 
 // base URL for webhook server
-let baseURL = process.env.BASE_URL;
+let baseURL = "https://unicorn-node.herokuapp.com/";
 
 // create LINE SDK client
 const client = new line.Client(config);
