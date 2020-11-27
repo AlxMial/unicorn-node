@@ -44,16 +44,16 @@ function handleEvent(event) {
   {
     const payload = {
       type: "text",
-      text: "Hello by mew"
+      text: "What's the fuck"
     };
     return client.replyMessage(event.replyToken, payload);
   } 
 
   // create a echoing text message
-  //const echo = { type: 'text', text: event.message.text };
+  const echo = { type: 'text', text: event.message.text };
 
   // use reply API
-  //return client.replyMessage(event.replyToken, echo);
+  return client.replyMessage(event.replyToken, echo);
 }
 
 
