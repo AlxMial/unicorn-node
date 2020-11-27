@@ -1,5 +1,8 @@
 const express = require('express');
 const line = require('@line/bot-sdk');
+const fs = require('fs');
+const path = require('path');
+const cp = require('child_process');
 
 require('dotenv').config();
 
