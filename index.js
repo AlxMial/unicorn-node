@@ -7,7 +7,7 @@ const app = express();
 
 const config = {
     channelAccessToken: "hp/K+6X7L0Nba8iMwyRIH/4MoafQbUvY1oFMRhfGuXkuOdfGvlHnyiH4t4gUzdUS31KZX4mNR4eCj2zLk4AqPPjm2qW7ZioR14KhXwcmN/n6DsbeSUHjVuk08t7+VplcHFSpZl9nNIURudWEsBHp5wdB04t89/1O/w1cDnyilFU=",
-    channelSecret: "b1cd91f12aedcafa6af9eebd01bca9d1",
+    channelSecret: "b1cd91f12aedcafa6af9eebd01bca9d1"
 };
 
 const client = new line.Client(config);
