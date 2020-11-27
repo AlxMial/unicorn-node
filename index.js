@@ -10,6 +10,9 @@ const config = {
     channelSecret: "b1cd91f12aedcafa6af9eebd01bca9d1"
 };
 
+// base URL for webhook server
+let baseURL = "https://unicorn-node.herokuapp.com/";
+
 const client = new line.Client(config);
 
 app.post('/webhook', line.middleware(config), (req, res) => {
