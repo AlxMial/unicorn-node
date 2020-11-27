@@ -28,6 +28,17 @@ function handleEvent(event) {
     }
 }
 
+client.getProfile('<userId>')
+  .then((profile) => {
+    console.log(profile.displayName);
+    console.log(profile.userId);
+    console.log(profile.pictureUrl);
+    console.log(profile.statusMessage);
+  })
+  .catch((err) => {
+    // error handling
+  });
+
 function handleMessageEvent(event) {
     var msg = {
         type: 'text',
@@ -148,7 +159,7 @@ function handleMessageEvent(event) {
         }
     }
 
-    return client.replyMessage(event.replyToken, msg);
+    return client.replyMessage(event.replyToken, profile.userId);
 }
 
 app.set('port', (process.env.PORT || 5000));
