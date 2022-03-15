@@ -27,11 +27,6 @@ app.use('/static', express.static('static'));
 app.use('/downloaded', express.static('downloaded'));
 
 app.get('/callback', (req, res) => {
-    
-  client.replyMessage(
-    token,
-    texts.map((text) => ({ type: 'text', text: 'hello, world' }))
-  );
   res.end(`I'm listening. Please access with POST.`)
 });
 
@@ -123,15 +118,19 @@ function handleText(message, replyToken, source) {
   switch (message.text) {
     case 'profile':
       if (source.userId) {
+
         return client.getProfile(source.userId)
-          .then((profile) => replyText(
+          .then((profile) => 
+          {
+            client.linkRichMenuToUser(profile.userId, "richmenu-21b7ce016fff49bc29d37510ca53eb72");
+            replyText(
             replyToken,
             [
               `User ID: ${profile.userId}`,
               `Display name: ${profile.displayName}`,
               `Status message: ${profile.statusMessage}`,
             ]
-          ));
+          )});
       } else {
         return replyText(replyToken, 'Bot can\'t use profile API without user ID');
       }
