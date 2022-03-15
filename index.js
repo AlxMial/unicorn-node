@@ -26,7 +26,14 @@ const app = express();
 app.use('/static', express.static('static'));
 app.use('/downloaded', express.static('downloaded'));
 
-app.get('/callback', (req, res) => res.end(`I'm listening. Please access with POST.`));
+app.get('/callback', (req, res) => {
+    
+  client.replyMessage(
+    token,
+    texts.map((text) => ({ type: 'text', text: 'hello, world' }))
+  );
+  res.end(`I'm listening. Please access with POST.`)
+});
 
 // webhook callback
 app.post('/callback', line.middleware(config), (req, res) => {
