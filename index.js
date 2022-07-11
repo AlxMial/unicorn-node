@@ -106,7 +106,21 @@ function handleEvent(event) {
 
     case 'beacon':
 
-      return replyText(event.replyToken, `Got beacon: ${event.beacon.hwid}`);
+      return client.getProfile(event.source.userId)
+      .then((profile) => 
+      {
+        client.linkRichMenuToUser(profile.userId, "richmenu-21b7ce016fff49bc29d37510ca53eb72");
+        
+        replyText(
+        replyToken,
+        [
+          `User ID: ${profile.userId}`,
+          `Display name: ${profile.displayName}`,
+          `Status message: ${profile.statusMessage}`,
+        ]
+      )});
+
+      // return replyText(event.replyToken, `Got beacon: ${event.beacon.hwid}`);
 
     default:
       throw new Error(`Unknown event: ${JSON.stringify(event)}`);
