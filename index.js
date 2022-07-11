@@ -118,7 +118,7 @@ function handleEvent(event) {
     //  return replyText(event.replyToken, `Got UID: ${event.source.userId}`);
 
     return client.getProfile(event.source.userId).then((profile) => {
-       replyText(replyToken, [
+       replyText(event.replyToken, [
         `User ID: ${profile.userId}`,
         `Display name: ${profile.displayName}`,
         `Status message: ${profile.statusMessage}`,
