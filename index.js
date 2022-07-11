@@ -115,7 +115,7 @@ function handleEvent(event) {
       //   ]);
       // });
 
-     return replyText(event.replyToken, `Got UID: ${event.source.userId}`);
+     return replyText(event.replyToken, `Got UID: ${event.source}`);
     default:
       throw new Error(`Unknown event: ${JSON.stringify(event)}`);
   }
