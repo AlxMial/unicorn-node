@@ -115,7 +115,7 @@ function handleEvent(event) {
       //   ]);
       // });
 
-     return replyText(event.replyToken, `Got UID: ${event.source}`);
+     return replyText(event.replyToken, `Got UID: ${event.source.userId}`);
     default:
       throw new Error(`Unknown event: ${JSON.stringify(event)}`);
   }
@@ -128,10 +128,10 @@ function handleText(message, replyToken, source) {
     case "profile":
       if (source.userId) {
         return client.getProfile(source.userId).then((profile) => {
-          client.linkRichMenuToUser(
-            profile.userId,
-            "richmenu-21b7ce016fff49bc29d37510ca53eb72"
-          );
+          // client.linkRichMenuToUser(
+          //   profile.userId,
+          //   "richmenu-21b7ce016fff49bc29d37510ca53eb72"
+          // );
 
           replyText(replyToken, [
             `User ID: ${profile.userId}`,
