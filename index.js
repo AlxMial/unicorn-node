@@ -8,8 +8,8 @@ const cp = require('child_process');
 
 // create LINE SDK config from env variables
 const config = {
-  channelAccessToken: "hp/K+6X7L0Nba8iMwyRIH/4MoafQbUvY1oFMRhfGuXkuOdfGvlHnyiH4t4gUzdUS31KZX4mNR4eCj2zLk4AqPPjm2qW7ZioR14KhXwcmN/n6DsbeSUHjVuk08t7+VplcHFSpZl9nNIURudWEsBHp5wdB04t89/1O/w1cDnyilFU=",
-  channelSecret: "b1cd91f12aedcafa6af9eebd01bca9d1",
+  channelAccessToken: "95rOLqvnNe0MpV0kBOcCxyaSpjrqMpSf7LvjJE/GHKSle7VGxDLBgDzCCL9BXDycy6+nCb9CZiax60dl0jqNfbs+EYubaeomlUm577NDT2EsQpRDj8a9JLLj93svmXvVmDOqhAcHOo2opjuARrDq8QdB04t89/1O/w1cDnyilFU=",
+  channelSecret: "09e997e70bb5747ca2d690c51371b042",
 };
 
 // base URL for webhook server
@@ -105,6 +105,7 @@ function handleEvent(event) {
       return replyText(event.replyToken, `Got postback: ${data}`);
 
     case 'beacon':
+
       return replyText(event.replyToken, `Got beacon: ${event.beacon.hwid}`);
 
     default:
@@ -123,6 +124,7 @@ function handleText(message, replyToken, source) {
           .then((profile) => 
           {
             client.linkRichMenuToUser(profile.userId, "richmenu-21b7ce016fff49bc29d37510ca53eb72");
+            
             replyText(
             replyToken,
             [
