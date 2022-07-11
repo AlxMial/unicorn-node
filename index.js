@@ -121,7 +121,7 @@ function handleEvent(event) {
 
     return client.getProfile(event.source.userId).then((profile) => {
        replyText(event.replyToken, [
-        `สวัสดีจ้า คุณ : ${profile.displayName} เข้างานเวลา ` + moment().format("MMM Do YY"),
+        `สวัสดีจ้า คุณ : ${profile.displayName} เข้างานเวลา ` + moment().format("DD/MM/YYYY h:mm:ss"),
       ]);
     });
 
