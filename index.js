@@ -5,6 +5,8 @@ const express = require("express");
 const fs = require("fs");
 const path = require("path");
 const cp = require("child_process");
+const axios = require('axios')
+const moment = require('moment');
 
 // create LINE SDK config from env variables
 const config = {
@@ -118,16 +120,13 @@ function handleEvent(event) {
     //  return replyText(event.replyToken, `Got UID: ${event.source.userId}`);
 
     return client.getProfile(event.source.userId).then((profile) => {
-
-        
-
-
        replyText(event.replyToken, [
-        `User ID: ${profile.userId}`,
-        `Display name: ${profile.displayName}`,
-        `Status message: ${profile.statusMessage}`,
+        `สวัสดีจ้า คุณ : ${profile.displayName} เข้างานเวลา ` + moment().format("MMM Do YY"),
       ]);
     });
+
+
+
     default:
       throw new Error(`Unknown event: ${JSON.stringify(event)}`);
   }
