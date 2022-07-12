@@ -118,11 +118,9 @@ function handleEvent(event) {
       // });
 
     //  return replyText(event.replyToken, `Got UID: ${event.source.userId}`);
-    moment.tz.guess();
-    moment(date1).utcOffset(7)
     return client.getProfile(event.source.userId).then((profile) => {
        replyText(event.replyToken, [
-        `สวัสดีจ้า คุณ : ${profile.displayName} เข้างานเวลา ` + moment().format("DD/MM/YYYY h:mm:ss"),
+        `สวัสดีจ้า คุณ : ${profile.displayName} เข้างานเวลา ` + moment().utcOffset(7).format("DD/MM/YYYY h:mm:ss"),
       ]);
     });
     default:
