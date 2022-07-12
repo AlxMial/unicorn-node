@@ -108,21 +108,14 @@ function handleEvent(event) {
       return replyText(event.replyToken, `Got postback: ${data}`);
 
     case "beacon":
-      // return client.getProfile(event.source.userId).then((profile) => {
+    const reToken = client.getProfile(event.source.userId).then((profile) => {
+      replyText(event.replyToken, [
 
-      //   replyText(replyToken, [
-      //     `User ID: ${profile.userId}`,
-      //     `Display name: ${profile.displayName}`,
-      //     `Status message: ${profile.statusMessage}`,
-      //   ]);
-      // });
-
-    //  return replyText(event.replyToken, `Got UID: ${event.source.userId}`);
-    return client.getProfile(event.source.userId).then((profile) => {
-       replyText(event.replyToken, [
-        `สวัสดีจ้า คุณ : ${profile.displayName} เข้างานเวลา ` + moment().utcOffset(7).format("DD/MM/YYYY h:mm:ss"),
-      ]);
+       `สวัสดีจ้า คุณ : ${profile.displayName} เข้างานเวลา ` + moment().utcOffset(7).format("DD/MM/YYYY h:mm:ss"),
+       
+     ]);
     });
+    return reToken;
     default:
       throw new Error(`Unknown event: ${JSON.stringify(event)}`);
   }
