@@ -121,13 +121,10 @@ function handleEvent(event) {
               if (res.data.status) {
                 var isUpload = false;
                 if (res.data.timestamp) {
-
-                  var minutesToAdd=30;
-                  var currentDate = new Date(res.data.timestamp);
-                  var futureDate = new Date(currentDate.getTimeminutesToAdd*60000);
-            
+                  var dt = new Date(res.data.timestamp);
+                  dt.setMinutes( dt.getMinutes() + 30 );
                   if (
-                    new Date() > futureDate
+                    new Date() > dt
                   ) {
                     isUpload = true;
                   }
