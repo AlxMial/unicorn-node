@@ -109,20 +109,42 @@ function handleEvent(event) {
 
     case "beacon":
       const reToken = client.getProfile(event.source.userId).then((profile) => {
-        try{
-        axios
-          .post("https://undefined.ddns.net/undefinedapi/lines", {
-            uid: event.source.userId,
-          })
-          .then((response) => {
-
-            replyText(event.replyToken, [
-              `Welcome to BNI คุณ : ${profile.displayName} เข้างานเวลา ` + moment().utcOffset(7).format("DD/MM/YYYY HH:mm:ss"),
-            ]);
-          });
-        }catch (err){
+        try {
+          axios
+            .get(
+              `https://undefined.ddns.net/undefinedapi/lines/getTimeStamp/${event.source.userId}`
+            )
+            .then((res) => {
+              if (res.data.status) {
+                var isUpload = false;
+                if (res.data.timestamp) {
+                  if (
+                    new Date() > new Date(new Date(res.data.timestamp).getTime() + (30 * 60000))
+                  ) {
+                    isUpload = true;
+                  }
+                } else {
+                  isUpload = true;
+                }
+                if (isUpload) {
+                  axios
+                    .post("https://undefined.ddns.net/undefinedapi/lines", {
+                      uid: event.source.userId,
+                    })
+                    .then((response) => {
+                      if (response.data.status) {
+                        replyText(event.replyToken, [
+                          `Welcome to BNI คุณ : ${profile.displayName} เวลาเข้าร่วมประชุม ` +
+                            moment().utcOffset(7).format("DD/MM/YYYY HH:mm:ss"),
+                        ]);
+                      }
+                    });
+                }
+              }
+            });
+        } catch (err) {
           replyText(event.replyToken, [
-            `สวัสดีจ้า คุณ : ${profile.displayName} เข้างานเวลา ` + err.message,
+            `ไม่สามารถเข้างานได้ สาเหตุ ` + err.message,
           ]);
         }
         //   replyText(event.replyToken, [
