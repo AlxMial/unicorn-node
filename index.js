@@ -119,27 +119,40 @@ function handleEvent(event) {
                 var isUpload = false;
                 var dt = new Date(res.data.timestamp);
                 dt.setMinutes(dt.getMinutes() + 30);
-                if (res.data.timestamp) {
-                  if (new Date() > dt) {
-                    isUpload = true;
+
+                axios
+                .post("https://undefined.ddns.net/undefinedapi/lines", {
+                  uid: event.source.userId,
+                })
+                .then((response) => {
+                  if (response.data.status) {
+                    replyText(event.replyToken, [
+                      `Welcome to BNI คุณ : ${profile.displayName} เวลาเข้าร่วมประชุม ` +
+                        moment(dt).utcOffset(7).format("DD/MM/YYYY HH:mm:ss"),
+                    ]);
                   }
-                } else {
-                  isUpload = true;
-                }
-                if (isUpload) {
-                  axios
-                    .post("https://undefined.ddns.net/undefinedapi/lines", {
-                      uid: event.source.userId,
-                    })
-                    .then((response) => {
-                      if (response.data.status) {
-                        replyText(event.replyToken, [
-                          `Welcome to BNI คุณ : ${profile.displayName} เวลาเข้าร่วมประชุม ` +
-                            moment().utcOffset(7).format("DD/MM/YYYY HH:mm:ss"),
-                        ]);
-                      }
-                    });
-                }
+                });
+                // if (res.data.timestamp) {
+                //   if (new Date() > dt) {
+                //     isUpload = true;
+                //   }
+                // } else {
+                //   isUpload = true;
+                // }
+                // if (isUpload) {
+                //   axios
+                //     .post("https://undefined.ddns.net/undefinedapi/lines", {
+                //       uid: event.source.userId,
+                //     })
+                //     .then((response) => {
+                //       if (response.data.status) {
+                //         replyText(event.replyToken, [
+                //           `Welcome to BNI คุณ : ${profile.displayName} เวลาเข้าร่วมประชุม ` +
+                //             moment(dt).utcOffset(7).format("DD/MM/YYYY HH:mm:ss"),
+                //         ]);
+                //       }
+                //     });
+                // }
               }
             });
         } catch (err) {
