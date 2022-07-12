@@ -121,7 +121,7 @@ function handleEvent(event) {
                 dt.setDate(dt.setDate() + 1);
 
                 if (res.data.timestamp) {
-                  if (new Date() > dt) {
+                  if ((new Date()).setHours(0, 0, 0, 0) > dt.setHours(0, 0, 0, 0)) {
                     isUpload = true;
                   }
                 } else {
