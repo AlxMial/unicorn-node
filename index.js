@@ -108,9 +108,6 @@ function handleEvent(event) {
       return replyText(event.replyToken, `Got postback: ${data}`);
 
     case "beacon":
-
-
-      
       const reToken = client.getProfile(event.source.userId).then((profile) => {
         try {
           axios
@@ -120,12 +117,10 @@ function handleEvent(event) {
             .then((res) => {
               if (res.data.status) {
                 var isUpload = false;
+                var dt = new Date(res.data.timestamp);
+                dt.setMinutes(dt.getMinutes() + 30);
                 if (res.data.timestamp) {
-                  var dt = new Date(res.data.timestamp);
-                  dt.setMinutes( dt.getMinutes() + 30 );
-                  if (
-                    new Date() > dt
-                  ) {
+                  if (new Date() > dt) {
                     isUpload = true;
                   }
                 } else {
