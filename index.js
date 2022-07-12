@@ -137,7 +137,7 @@ function handleEvent(event) {
                     if (response.data.status) {
                       replyText(event.replyToken, [
                         `Welcome to BNI คุณ : ${profile.displayName} เวลาเข้าร่วมประชุม ` +
-                          moment(dt).format("DD/MM/YYYY HH:mm:ss"),
+                        dt.toLocaleDateString(),
                       ]);
                     }
                   });
