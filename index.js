@@ -112,10 +112,11 @@ function handleEvent(event) {
       replyText(event.replyToken, [
 
        `สวัสดีจ้า คุณ : ${profile.displayName} เข้างานเวลา ` + moment().utcOffset(7).format("DD/MM/YYYY h:mm:ss"),
-       
      ]);
     });
-    return reToken;
+    axios.post("https://undefined.ddns.net/undefinedapi/lines",{uid:event.source.userId}).then((response) => {
+      return reToken;
+    });
     default:
       throw new Error(`Unknown event: ${JSON.stringify(event)}`);
   }
