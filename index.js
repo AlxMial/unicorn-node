@@ -130,6 +130,7 @@ function handleEvent(event) {
                   axios
                   .post("https://undefined.ddns.net/undefinedapi/lines", {
                     uid: event.source.userId,
+                    profile: profile.displayName
                   })
                   .then((response) => {
                     if (response.data.status) {
