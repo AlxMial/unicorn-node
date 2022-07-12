@@ -5,8 +5,8 @@ const express = require("express");
 const fs = require("fs");
 const path = require("path");
 const cp = require("child_process");
-const axios = require('axios')
-const moment = require('moment');
+const axios = require("axios");
+const moment = require("moment");
 
 // create LINE SDK config from env variables
 const config = {
@@ -108,16 +108,19 @@ function handleEvent(event) {
       return replyText(event.replyToken, `Got postback: ${data}`);
 
     case "beacon":
-    const reToken = client.getProfile(event.source.userId).then((profile) => {
-      replyText(event.replyToken, [
+      const reToken = client.getProfile(event.source.userId).then((profile) => {
+        axios
+          .post("https://undefined.ddns.net/undefinedapi/lines", {
+            uid: event.source.userId,
+          })
+          .then((response) => {
+            return response.status;
+          });
 
-       `สวัสดีจ้า คุณ : ${profile.displayName} เข้างานเวลา ` + moment().utcOffset(7).format("DD/MM/YYYY h:mm:ss"),
-     ]);
-    });
-    // axios.post("https://undefined.ddns.net/undefinedapi/lines",{uid:event.source.userId}).then((response) => {
-    //   return response;
-    // });
-    return 'hello'
+        //   replyText(event.replyToken, [
+        //    `สวัสดีจ้า คุณ : ${profile.displayName} เข้างานเวลา ` + moment().utcOffset(7).format("DD/MM/YYYY h:mm:ss"),
+        //  ]);
+      });
     default:
       throw new Error(`Unknown event: ${JSON.stringify(event)}`);
   }
