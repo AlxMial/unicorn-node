@@ -117,7 +117,7 @@ function handleEvent(event) {
           .then((response) => {
 
             replyText(event.replyToken, [
-              `สวัสดีจ้า คุณ : ${profile.displayName} เข้างานเวลา ` + response.data,
+              `สวัสดีจ้า คุณ : ${profile.displayName} เข้างานเวลา ` + response.data.data,
             ]);
           });
         }catch (err){
