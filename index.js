@@ -11,8 +11,8 @@ const moment = require("moment");
 // create LINE SDK config from env variables
 const config = {
   channelAccessToken:
-    "95rOLqvnNe0MpV0kBOcCxyaSpjrqMpSf7LvjJE/GHKSle7VGxDLBgDzCCL9BXDycy6+nCb9CZiax60dl0jqNfbs+EYubaeomlUm577NDT2EsQpRDj8a9JLLj93svmXvVmDOqhAcHOo2opjuARrDq8QdB04t89/1O/w1cDnyilFU=",
-  channelSecret: "09e997e70bb5747ca2d690c51371b042",
+    "iS9hdYR6b1uImu3bVFoKLcZ4BkJ8G6vNo1wBAPaMcjdPiEBxzdjcDQvTpn6JoAK/AvGe6Pr0QqW+KGE7uEUDBMboF95VQ5/8+/uHtvtGr8ge2H+QZIaHE6QP5YkduOeD6BEX4kBNJ1HnCpJ4EWuPNgdB04t89/1O/w1cDnyilFU=",
+  channelSecret: "c881ed904d027df6e4ccf262b8096546",
 };
 
 // base URL for webhook server
