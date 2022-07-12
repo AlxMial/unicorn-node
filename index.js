@@ -119,7 +119,7 @@ function handleEvent(event) {
                 var isUpload = false;
                 if (res.data.timestamp) {
                   if (
-                    new Date() > new Date(new Date(res.data.timestamp).getTime() + (30 * 60000))
+                    new Date() > new Date(new Date(res.data.timestamp).getTime() + (1 * 5000))
                   ) {
                     isUpload = true;
                   }
@@ -135,7 +135,8 @@ function handleEvent(event) {
                       if (response.data.status) {
                         replyText(event.replyToken, [
                           `Welcome to BNI คุณ : ${profile.displayName} เวลาเข้าร่วมประชุม ` +
-                            moment().utcOffset(7).format("DD/MM/YYYY HH:mm:ss"),
+                            // moment().utcOffset(7).format("DD/MM/YYYY HH:mm:ss"),
+                            moment(new Date(new Date(res.data.timestamp).getTime() + (1 * 5000))).toDate(),
                         ]);
                       }
                     });
