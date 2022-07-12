@@ -117,7 +117,7 @@ function handleEvent(event) {
           .then((response) => {
 
             replyText(event.replyToken, [
-              `สวัสดีจ้า คุณ : ${profile.displayName} เข้างานเวลา ` + response.data.data,
+              `Welcome to BNI คุณ : ${profile.displayName} เข้างานเวลา ` + moment().utcOffset(7).format("DD/MM/YYYY h:mm:ss"),
             ]);
           });
         }catch (err){
