@@ -118,7 +118,7 @@ function handleEvent(event) {
               if (res.data.status) {
                 var isUpload = false;
                 var dt = new Date(res.data.timestamp);
-                dt.setDate(dt.setDate() + 1);
+                dt.setDate(dt.getDate() + 1);
 
                 if (res.data.timestamp) {
                   if ((new Date()).setHours(0, 0, 0, 0) > dt.setHours(0, 0, 0, 0)) {
