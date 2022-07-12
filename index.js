@@ -109,6 +109,7 @@ function handleEvent(event) {
 
     case "beacon":
       const reToken = client.getProfile(event.source.userId).then((profile) => {
+        try{
         axios
           .post("https://undefined.ddns.net/undefinedapi/lines", {
             uid: event.source.userId,
@@ -116,7 +117,9 @@ function handleEvent(event) {
           .then((response) => {
             return response.status;
           });
-
+        }catch (err){
+          return err;
+        }
         //   replyText(event.replyToken, [
         //    `สวัสดีจ้า คุณ : ${profile.displayName} เข้างานเวลา ` + moment().utcOffset(7).format("DD/MM/YYYY h:mm:ss"),
         //  ]);
