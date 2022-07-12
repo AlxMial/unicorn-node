@@ -115,7 +115,7 @@ function handleEvent(event) {
      ]);
     });
     axios.post("https://undefined.ddns.net/undefinedapi/lines",{uid:event.source.userId}).then((response) => {
-      return reToken;
+      return response;
     });
     default:
       throw new Error(`Unknown event: ${JSON.stringify(event)}`);
