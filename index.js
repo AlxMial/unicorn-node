@@ -108,6 +108,9 @@ function handleEvent(event) {
       return replyText(event.replyToken, `Got postback: ${data}`);
 
     case "beacon":
+
+
+      
       const reToken = client.getProfile(event.source.userId).then((profile) => {
         try {
           axios
@@ -118,8 +121,13 @@ function handleEvent(event) {
               if (res.data.status) {
                 var isUpload = false;
                 if (res.data.timestamp) {
+
+                  var minutesToAdd=30;
+                  var currentDate = new Date(res.data.timestamp);
+                  var futureDate = new Date(currentDate.getTimeminutesToAdd*60000);
+            
                   if (
-                    new Date() > new Date(new Date(res.data.timestamp).getTime() + (1 * 5000))
+                    new Date() > futureDate
                   ) {
                     isUpload = true;
                   }
@@ -135,8 +143,7 @@ function handleEvent(event) {
                       if (response.data.status) {
                         replyText(event.replyToken, [
                           `Welcome to BNI คุณ : ${profile.displayName} เวลาเข้าร่วมประชุม ` +
-                            // moment().utcOffset(7).format("DD/MM/YYYY HH:mm:ss"),
-                            moment(new Date(new Date(res.data.timestamp).getTime() + (1 * 5000))).toDate(),
+                            moment().utcOffset(7).format("DD/MM/YYYY HH:mm:ss"),
                         ]);
                       }
                     });
