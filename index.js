@@ -115,10 +115,15 @@ function handleEvent(event) {
             uid: event.source.userId,
           })
           .then((response) => {
-            return response.status;
+
+            replyText(event.replyToken, [
+              `สวัสดีจ้า คุณ : ${profile.displayName} เข้างานเวลา ` + response.status,
+            ]);
           });
         }catch (err){
-          return err;
+          replyText(event.replyToken, [
+            `สวัสดีจ้า คุณ : ${profile.displayName} เข้างานเวลา ` + err.message,
+          ]);
         }
         //   replyText(event.replyToken, [
         //    `สวัสดีจ้า คุณ : ${profile.displayName} เข้างานเวลา ` + moment().utcOffset(7).format("DD/MM/YYYY h:mm:ss"),
